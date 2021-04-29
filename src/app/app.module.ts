@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar/navbar.component';
 import { LoginComponent } from './login/login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
+import { ConfirmEqualValidatorDirective } from './register/register/ConfirmEqualValidator.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,7 @@ import { HeaderComponent } from './header/header.component';
     NavbarComponent,
     LoginComponent,
     SidebarComponent,
-    HeaderComponent
+    HeaderComponent,ConfirmEqualValidatorDirective
   ],
   imports: [
     FormsModule,

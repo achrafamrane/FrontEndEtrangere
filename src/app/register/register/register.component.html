@@ -17,37 +17,57 @@
 
             <ng-template #signupForm>
               <div class="user">
-                <form
-                  name="form"
-                  (ngSubmit)="f.form.valid && onSubmit()"
-                  #f="ngForm"
-                  novalidate
-                >
+                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                  <div class="form-group row">
+
+                  <div class="col-sm-6 mb-3 mb-sm-0" >
+                    <label for="TypeBachelier">Type</label>
+                    <select class="form-control form-control-user" name="TypeBachelier" (change)="changeTypeBachelier($event)" [(ngModel)]="TypeBachelier">
+                      <option class="form-control form-control-user"  [value]="TypeBachelier.id"  *ngFor="let TypeBachelier of typeBachelier">
+                                 {{TypeBachelier.lib_fr}}</option>
+                    </select>
+                    <div *ngIf="f.submitted && username.invalid">
+                      <div *ngIf="username.errors.required">
+                        Type is required
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 mb-3 mb-sm-0" >
+                    <label for="Nationalité">Nationalité</label>
+                    <select class="form-control form-control-user" name="country" [(ngModel)]="country">
+                      <option class="form-control form-control-user" [value]="country.id"  *ngFor="let country of nationalite">
+                                 {{country.pays_fr}}</option>
+                    </select>
+                    <div *ngIf="f.submitted && username.invalid">
+                      <div *ngIf="username.errors.required">
+                        nationalite is required
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row" *ngIf="showChoix" >
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <label for="inscriptionChoix">Inscription Choix</label>
+                    <select class="form-control form-control-user" name="inscriptionChoix" [(ngModel)]="inscriptionChoix">
+                      <option class="form-control form-control-user"  [value]="inscriptionChoix.id"  *ngFor="let inscriptionChoix of InscriptionChoix">
+                        {{inscriptionChoix.type_fr}}</option>
+                    </select>
+                  </div>
+
+                </div>
                   <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
                       <label for="name">Your name</label>
-                      <input
-                        type="text"
-                        class="form-control form-control-user"
-                        name="name"
-                        [(ngModel)]="form.name"
-                        #name="ngModel"
-                        required
-                      />
+                      <input type="text" class="form-control form-control-user" name="name" [(ngModel)]="form.name"
+                        #name="ngModel" required />
                       <div *ngIf="f.submitted && name.invalid">
                         <div *ngIf="name.errors.required">Name is required</div>
                       </div>
                     </div>
                     <div class="col-sm-6 mb-3 mb-sm-0">
                       <label for="prenom">Your prenom</label>
-                      <input
-                        type="text"
-                        class="form-control form-control-user"
-                        name="prenom"
-                        [(ngModel)]="form.prenom"
-                        #prenom="ngModel"
-                        required
-                      />
+                      <input type="text" class="form-control form-control-user" name="prenom" [(ngModel)]="form.prenom"
+                        #prenom="ngModel" required />
                       <div *ngIf="f.submitted && prenom.invalid">
                         <div *ngIf="prenom.errors.required">
                           Prenom is required
@@ -57,14 +77,8 @@
                   </div>
                   <div class="form-group">
                     <label for="username">Username</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="username"
-                      [(ngModel)]="form.username"
-                      #username="ngModel"
-                      required
-                    />
+                    <input type="text" class="form-control" name="username" [(ngModel)]="form.username"
+                      #username="ngModel" required />
                     <div *ngIf="f.submitted && username.invalid">
                       <div *ngIf="username.errors.required">
                         Username is required
@@ -73,15 +87,8 @@
                   </div>
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="email"
-                      [(ngModel)]="form.email"
-                      #email="ngModel"
-                      required
-                      email
-                    />
+                    <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel"
+                      required email />
                     <div *ngIf="f.submitted && email.invalid">
                       <div *ngIf="email.errors.required">Email is required</div>
                       <div *ngIf="email.errors.email">
@@ -91,15 +98,8 @@
                   </div>
                   <div class="form-group">
                     <label for="password">Password</label>
-                    <input
-                      type="password"
-                      class="form-control"
-                      name="password"
-                      [(ngModel)]="form.password"
-                      #password="ngModel"
-                      required
-                      minlength="6"
-                    />
+                    <input type="password" class="form-control" name="password" [(ngModel)]="form.password"
+                      #password="ngModel" required minlength="6" />
                     <div *ngIf="f.submitted && password.invalid">
                       <div *ngIf="password.errors.required">
                         Password is required
@@ -110,15 +110,25 @@
                     </div>
                   </div>
                   <div class="form-group">
+                    <label for="ConfirmPassword">Confirm Password</label>
+                    <input type="password" class="form-control" appConfirmEqualValidator="password" name="ConfirmPassword" [(ngModel)]="form.ConfirmPassword"
+                      #ConfirmPassword="ngModel" required minlength="6" />
+                    <div *ngIf="f.submitted && ConfirmPassword.invalid">
+                      <div *ngIf="ConfirmPassword.errors.required">
+                        Password is required
+                      </div>
+                      <span class="help-block"
+                      *ngIf="ConfirmPassword.touched && ConfirmPassword.errors?.notEqual &&
+                        !ConfirmPassword.errors?.required">
+                  Password and Confirm Password does not match
+                </span>
+                    </div>
+                  </div>
+                  <div class="form-group">
                     <button class="btn btn-primary">Inscription</button>
-                    <a [routerLink]="['/login']" class="btn btn-success"
-                      >Se connecter</a
-                    >
+                    <a [routerLink]="['/login']" class="btn btn-success">Se connecter</a>
 
-                    <div
-                      *ngIf="f.submitted && isSignUpFailed"
-                      class="alert alert-warning"
-                    >
+                    <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
                       Signup failed!<br />{{ errorMessage }}
                     </div>
                   </div>

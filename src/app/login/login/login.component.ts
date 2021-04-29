@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form);
 
     this.loginInfo = new AuthLoginInfo(
       this.form.username,
@@ -51,6 +50,10 @@ export class LoginComponent implements OnInit {
   }
 
   reloadPage() {
+    window.location.reload();
+  }
+  logout() {
+    this.tokenStorage.signOut();
     window.location.reload();
   }
 }

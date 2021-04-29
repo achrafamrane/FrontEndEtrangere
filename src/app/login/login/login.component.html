@@ -7,6 +7,7 @@
             <div *ngIf="isLoggedIn; else loggedOut">
               <!--  Logged in as {{roles}}. -->
               successful
+              <button (click)="logout()"  class="btn btn-success">logout</button>
             </div>
 
             <ng-template #loggedOut>
