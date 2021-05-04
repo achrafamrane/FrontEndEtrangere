@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
 import { ConfirmEqualValidatorDirective } from './register/register/ConfirmEqualValidator.directive';
+import { InscriptionProfilComponent } from './inscription-profil/inscription-profil.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,7 @@ import { ConfirmEqualValidatorDirective } from './register/register/ConfirmEqual
     NavbarComponent,
     LoginComponent,
     SidebarComponent,
-    HeaderComponent,ConfirmEqualValidatorDirective
+    HeaderComponent,ConfirmEqualValidatorDirective, InscriptionProfilComponent
   ],
   imports: [
     FormsModule,

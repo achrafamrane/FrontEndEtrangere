@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card-body p-0">
+      <div class="row">
+        <!-- photo -->
+        <div class="col-lg-2">
+          <div class="p-4">
+            <div class="text-center">
+              <h1 class="h4 text-gray-900 mb-4">Informations Personnelles </h1>
+            </div>
+
+
+
+
+          </div>
+        </div>
+        <!--End photo -->
+        <div class="col-lg-10">
+          <div class="p-4">
+            <div class="text-center">
+              <h1 class="h4 text-gray-900 mb-4">Informations Personnelles </h1>
+            </div>
+
+            <div *ngIf="isSignedUp; else signupForm">
+              Your registration is successful. Please login!
+              <button [routerLink]="['/login']" class="btn btn-success">
+                Login
+              </button>
+            </div>
+
+            <ng-template #signupForm>
+              <div class="user">
+                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                    <!-- Nom && Prenom -->
+                  <div class="form-group row">
+                    <div class="col-sm-4 mb-3 mb-sm-0">
+                      <label for="name">Your name</label>
+                      <input type="text" class="form-control form-control-user" name="name" [(ngModel)]="form.name"
+                        #name="ngModel" required />
+                      <div *ngIf="f.submitted && name.invalid">
+                        <div *ngIf="name.errors.required">Name is required</div>
+                      </div>
+                    </div>
+                    <div class="col-sm-4 mb-3 mb-sm-0">
+                      <label for="prenom">Your prenom</label>
+                      <input type="text" class="form-control form-control-user" name="prenom" [(ngModel)]="form.prenom"
+                        #prenom="ngModel" required />
+                      <div *ngIf="f.submitted && prenom.invalid">
+                        <div *ngIf="prenom.errors.required">
+                          Prenom is required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                      <!-- Email && sexe -->
+                  <div class="form-group row">
+                    <div class="col-sm-4 mb-3 mb-sm-0">
+                      <label for="email">Email</label>
+                    <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel"
+                      required email />
+
+                    </div>
+                    <div class="col-sm-4 mb-3 mb-sm-0">
+                      <label for="sexe">Sexe</label>
+                      <select class="form-control form-control-user" name="sexe"
+
+
+                        required>
+                        <option  class="form-control form-control-user" [value]="Homme">Homme</option>
+                        <option  class="form-control form-control-user" [value]="Femme">Femme</option>
+                      </select>
+                    </div>
+                  </div>
+                            <!-- Date de naissance && lieu de naissance -->
+
+                            <div class="form-group row">
+                              <div class="col-sm-4 mb-3 mb-sm-0">
+                                <label for="Date_de_naissance">Date de naissance</label>
+                              <input type="date" class="form-control"
+                                required  />
+                              </div>
+                              <div class="col-sm-4 mb-3 mb-sm-0">
+                                <label for="Lieu_de_naissance">Lieu de naissance</label>
+                              <input type="text" class="form-control"
+                                required  />
+                              </div>
+                            </div>
+                </form>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

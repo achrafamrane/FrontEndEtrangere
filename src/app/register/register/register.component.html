@@ -19,42 +19,49 @@
               <div class="user">
                 <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
                   <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
 
-                  <div class="col-sm-6 mb-3 mb-sm-0" >
-                    <label for="type_bachelier">type bachelier</label>
-                    <select class="form-control form-control-user" name="type_bachelier" (change)="changeTypeBachelier($event)" [(ngModel)]="form.type_bachelier" #type_bachelier="ngModel" >
-                      <option class="form-control form-control-user"  [value]="type_bachelier.id"  *ngFor="let type_bachelier of typeBachelier">
-                                 {{type_bachelier.lib_fr}}</option>
-                    </select>
-                    <div *ngIf="f.submitted && type_bachelier.invalid">
-                      <div *ngIf="type_bachelier.errors.required">
-                        type_bachelier is required
+                      <label for="type_bachelier">type bachelier</label>
+                      <select class="form-control form-control-user" name="type_bachelier"
+                        (change)="changeTypeBachelier($event)" [(ngModel)]="form.type_bachelier"
+                        #type_bachelier="ngModel"
+                        required>
+                        <option  class="form-control form-control-user" [value]="type_bachelier.id"
+                          *ngFor="let type_bachelier of typeBachelier">
+                          {{ type_bachelier.lib_fr }}
+                        </option>
+                      </select>
+
+                      <div *ngIf="f.submitted && type_bachelier.invalid">
+                        <div *ngIf="type_bachelier.errors.required">Type is required</div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <label for="Nationalité">Nationalité</label>
+                      <select class="form-control form-control-user" name="pays_nationalite"
+                        [(ngModel)]="form.pays_nationalite" #pays_nationalite="ngModel" required>
+                        <option  class="form-control form-control-user" [value]="pays_nationalite.id"
+                          *ngFor="let pays_nationalite of nationalite">
+                          {{ pays_nationalite.pays_fr }}
+                        </option>
+                      </select>
+                      <div *ngIf="f.submitted && pays_nationalite.invalid">
+                        <div *ngIf="pays_nationalite.errors.required">Nationalite is required</div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-sm-6 mb-3 mb-sm-0" >
-                    <label for="Nationalité">Nationalité</label>
-                    <select class="form-control form-control-user" name="pays_nationalite" [(ngModel)]="form.pays_nationalite" #pays_nationalite="ngModel">
-                      <option class="form-control form-control-user" [value]="pays_nationalite.id"  *ngFor="let pays_nationalite of nationalite">
-                                 {{pays_nationalite.pays_fr}}</option>
-                    </select>
-                    <div *ngIf="f.submitted && username.invalid">
-                      <div *ngIf="username.errors.required">
-                        nationalite is required
-                      </div>
+                  <div class="form-group row" *ngIf="showChoix">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <label for="types_inscription">types inscription</label>
+                      <select class="form-control form-control-user" name="types_inscription"
+                        [(ngModel)]="form.types_inscription" #types_inscription="ngModel">
+                        <option class="form-control form-control-user" [value]="types_inscription.type_fr"
+                          *ngFor="let types_inscription of InscriptionChoix">
+                          {{ types_inscription.type_fr }}
+                        </option>
+                      </select>
                     </div>
                   </div>
-                </div>
-                <div class="form-group row" *ngIf="showChoix" >
-                  <div class="col-sm-6 mb-3 mb-sm-0">
-                    <label for="types_inscription">types inscription</label>
-                    <select class="form-control form-control-user" name="types_inscription" [(ngModel)]="form.types_inscription" #types_inscription="ngModel">
-                      <option class="form-control form-control-user"  [value]="types_inscription.type_fr"  *ngFor="let types_inscription of InscriptionChoix">
-                        {{types_inscription.type_fr}}</option>
-                    </select>
-                  </div>
-
-                </div>
                   <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
                       <label for="name">Your name</label>
@@ -111,17 +118,20 @@
                   </div>
                   <div class="form-group">
                     <label for="ConfirmPassword">Confirm Password</label>
-                    <input type="password" class="form-control" appConfirmEqualValidator="password" name="ConfirmPassword" [(ngModel)]="form.ConfirmPassword"
-                      #ConfirmPassword="ngModel" required minlength="6" />
+                    <input type="password" class="form-control" appConfirmEqualValidator="password"
+                      name="ConfirmPassword" [(ngModel)]="form.ConfirmPassword" #ConfirmPassword="ngModel" required
+                      minlength="6" />
                     <div *ngIf="f.submitted && ConfirmPassword.invalid">
                       <div *ngIf="ConfirmPassword.errors.required">
                         Password is required
                       </div>
-                      <span class="help-block"
-                      *ngIf="ConfirmPassword.touched && ConfirmPassword.errors?.notEqual &&
-                        !ConfirmPassword.errors?.required">
-                  Password and Confirm Password does not match
-                </span>
+                      <span class="help-block" *ngIf="
+                          ConfirmPassword.touched &&
+                          ConfirmPassword.errors?.notEqual &&
+                          !ConfirmPassword.errors?.required
+                        ">
+                        Password and Confirm Password does not match
+                      </span>
                     </div>
                   </div>
                   <div class="form-group">
