@@ -37,14 +37,33 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    this.signupInfo = new SignUpInfo(
-      this.form.name,
-      this.form.prenom,
-      this.form.username,
-      this.form.email,
-      this.form.password,
-      this.form.ConfirmPassword
-    );
+    if(this.form.types_inscription==null){
+      this.signupInfo = new SignUpInfo(
+        this.form.name,
+        this.form.prenom,
+        this.form.username,
+        this.form.email,
+        this.form.password,
+        this.form.ConfirmPassword,
+        this.form.pays_nationalite,
+        this.form.type_bachelier,
+        this.form.types_inscription="Bachelier"
+      );
+    }else{
+      this.signupInfo = new SignUpInfo(
+        this.form.name,
+        this.form.prenom,
+        this.form.username,
+        this.form.email,
+        this.form.password,
+        this.form.ConfirmPassword,
+        this.form.pays_nationalite,
+        this.form.type_bachelier,
+        this.form.types_inscription
+      );
+    }
+
+
 
     this.authService.signUp(this.signupInfo).subscribe(
       (data) => {
@@ -61,6 +80,7 @@ export class RegisterComponent implements OnInit {
     if (e.target.value == 3) {
       this.showChoix = true;
     } else {
+
       this.showChoix = false;
     }
   }

@@ -21,22 +21,22 @@
                   <div class="form-group row">
 
                   <div class="col-sm-6 mb-3 mb-sm-0" >
-                    <label for="TypeBachelier">Type</label>
-                    <select class="form-control form-control-user" name="TypeBachelier" (change)="changeTypeBachelier($event)" [(ngModel)]="TypeBachelier">
-                      <option class="form-control form-control-user"  [value]="TypeBachelier.id"  *ngFor="let TypeBachelier of typeBachelier">
-                                 {{TypeBachelier.lib_fr}}</option>
+                    <label for="type_bachelier">type bachelier</label>
+                    <select class="form-control form-control-user" name="type_bachelier" (change)="changeTypeBachelier($event)" [(ngModel)]="form.type_bachelier" #type_bachelier="ngModel" >
+                      <option class="form-control form-control-user"  [value]="type_bachelier.id"  *ngFor="let type_bachelier of typeBachelier">
+                                 {{type_bachelier.lib_fr}}</option>
                     </select>
-                    <div *ngIf="f.submitted && username.invalid">
-                      <div *ngIf="username.errors.required">
-                        Type is required
+                    <div *ngIf="f.submitted && type_bachelier.invalid">
+                      <div *ngIf="type_bachelier.errors.required">
+                        type_bachelier is required
                       </div>
                     </div>
                   </div>
                   <div class="col-sm-6 mb-3 mb-sm-0" >
                     <label for="Nationalité">Nationalité</label>
-                    <select class="form-control form-control-user" name="country" [(ngModel)]="country">
-                      <option class="form-control form-control-user" [value]="country.id"  *ngFor="let country of nationalite">
-                                 {{country.pays_fr}}</option>
+                    <select class="form-control form-control-user" name="pays_nationalite" [(ngModel)]="form.pays_nationalite" #pays_nationalite="ngModel">
+                      <option class="form-control form-control-user" [value]="pays_nationalite.id"  *ngFor="let pays_nationalite of nationalite">
+                                 {{pays_nationalite.pays_fr}}</option>
                     </select>
                     <div *ngIf="f.submitted && username.invalid">
                       <div *ngIf="username.errors.required">
@@ -47,10 +47,10 @@
                 </div>
                 <div class="form-group row" *ngIf="showChoix" >
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <label for="inscriptionChoix">Inscription Choix</label>
-                    <select class="form-control form-control-user" name="inscriptionChoix" [(ngModel)]="inscriptionChoix">
-                      <option class="form-control form-control-user"  [value]="inscriptionChoix.id"  *ngFor="let inscriptionChoix of InscriptionChoix">
-                        {{inscriptionChoix.type_fr}}</option>
+                    <label for="types_inscription">types inscription</label>
+                    <select class="form-control form-control-user" name="types_inscription" [(ngModel)]="form.types_inscription" #types_inscription="ngModel">
+                      <option class="form-control form-control-user"  [value]="types_inscription.type_fr"  *ngFor="let types_inscription of InscriptionChoix">
+                        {{types_inscription.type_fr}}</option>
                     </select>
                   </div>
 
