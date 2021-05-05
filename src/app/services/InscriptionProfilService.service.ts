@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_URL } from '../app.constants';
+import { InscrptionProfil } from '../model/inscrption-profil';
 
 @Injectable({
   providedIn: 'root'
 })
-export class IscriptionProfil {
+export class InscriptionProfilService {
   private baseUrl=`${API_URL}`;
 
 
@@ -21,6 +22,10 @@ export class IscriptionProfil {
   getAllInscriptionChoix():Observable<any>{
     return this.http.get(`${this.baseUrl}/allInscriptionChoix`);
   }
+  getBachelierById(id):Observable<any>{
+    return this.http.get<InscrptionProfil>(`${this.baseUrl}/informationProfil/${id}`);
+  }
+
 
 
 }

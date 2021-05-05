@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
-import { SignUpInfo } from '../auth/signup-info';
-import { IscriptionProfil } from '../services/inscriptionProfil.service';
+import { InscrptionProfil } from '../model/inscrption-profil';
+import { InscriptionProfilService } from '../services/InscriptionProfilService.service';
 
 @Component({
   selector: 'app-inscription-profil',
@@ -14,7 +14,8 @@ export class InscriptionProfilComponent implements OnInit {
   id:number;
   showChoix: Boolean = false;
   form: any = {};
-  signupInfo: SignUpInfo;
+  profil:InscrptionProfil;
+  signupInfo: InscrptionProfil;
   isSignedUp = false;
   isSignUpFailed = false;
   errorMessage = '';
@@ -24,45 +25,31 @@ export class InscriptionProfilComponent implements OnInit {
   constructor(
     private route:ActivatedRoute,
     private authService: AuthService,
-    private inscriptionProfil: IscriptionProfil
+    private inscriptionProfilService: InscriptionProfilService
   ) {}
 
   ngOnInit() : void {
-    this.inscriptionProfil.getAllPays().subscribe((Response) => {
+    this.inscriptionProfilService.getAllPays().subscribe((Response) => {
       this.nationalite = Response;
     });
-    const id = this.route.snapshot.paramMap.get('id');
-    console.log('this.id: ', this.id);
+    this.id = this.route.snapshot.params["id"];
+    this.profil=new InscrptionProfil(this.id,"","","",new Date(),"",0,0,new Date(),0);
 
+    this.inscriptionProfilService.getBachelierById(this.id).subscribe(response=>
+      {
+        this.profil=response;
+        console.log('this.profil: ', this.profil);
+      })
   }
+
 
   onSubmit() {
 
-      this.signupInfo = new SignUpInfo(
-        this.form.name,
-        this.form.prenom,
-        this.form.username,
-        this.form.email,
-        this.form.password,
-        this.form.ConfirmPassword,
-        this.form.pays_nationalite,
-        this.form.type_bachelier,
-        this.form.types_inscription
-      );
 
 
 
 
-    this.authService.signUp(this.signupInfo).subscribe(
-      (data) => {
-        this.isSignedUp = true;
-        this.isSignUpFailed = false;
-      },
-      (error) => {
-        this.errorMessage = error.error.message;
-        this.isSignUpFailed = true;
-      }
-    );
-  }
 
-}
+
+
+      }}

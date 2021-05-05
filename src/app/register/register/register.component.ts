@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { SignUpInfo } from 'src/app/auth/signup-info';
-import { IscriptionProfil } from 'src/app/services/inscriptionProfil.service';
+import { InscriptionProfilService } from 'src/app/services/InscriptionProfilService.service';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   InscriptionChoix: Observable<string[]>;
   constructor(
     private authService: AuthService,
-    private inscriptionProfil: IscriptionProfil
+    private inscriptionProfil: InscriptionProfilService
   ) {}
 
   ngOnInit() {

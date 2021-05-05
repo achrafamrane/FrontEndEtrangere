@@ -1,4 +1,5 @@
 export class InscrptionProfil {
+  id:number;
   nom: string;
   prenom: string;
   sexe: string;
@@ -12,7 +13,7 @@ export class InscrptionProfil {
 
 
 
-  constructor(
+  constructor(id:number,
     nom: string,
     prenom: string,
     sexe: string,
@@ -23,6 +24,7 @@ export class InscrptionProfil {
     datelimiteValidite: Date,
     paysdelivrencePassport: number,
     ) {
+      this.id=id;
       this.nom = nom;
       this.prenom = prenom;
       this.sexe = sexe;
