@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { JwtResponse } from './jwt-response';
 import { AuthLoginInfo } from './login-info';
 import { SignUpInfo } from './signup-info';
+import { API_URL } from '../app.constants';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,9 +15,9 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-
-  private loginUrl = 'http://localhost:8080/api/auth/signin';
-  private signupUrl = 'http://localhost:8080/api/auth/signup';
+  private baseUrl=`${API_URL}`;
+  private loginUrl = `${this.baseUrl}/signin`;
+  private signupUrl = `${this.baseUrl}/signup`;
 
   constructor(private http: HttpClient) {
   }

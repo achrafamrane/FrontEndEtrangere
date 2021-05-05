@@ -6,7 +6,7 @@
         <div class="col-lg-2">
           <div class="p-4">
             <div class="text-center">
-              <h1 class="h4 text-gray-900 mb-4">Informations Personnelles </h1>
+              <h1 class="h4 text-gray-900 mb-4">Photo </h1>
             </div>
 
 
@@ -86,6 +86,37 @@
                                 required  />
                               </div>
                             </div>
+                              <!-- Pays de naissance && Numero de passport -->
+                              <div class="form-group row">
+                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                  <label for="Date_de_naissance">Pays de naissance</label>
+                                  <select class="form-control form-control-user" name="pays_nationalite"
+                                  [(ngModel)]="form.pays_nationalite" #pays_nationalite="ngModel" required>
+                                  <option  class="form-control form-control-user" [value]="pays_nationalite.id"
+                                    *ngFor="let pays_nationalite of nationalite">
+                                    {{ pays_nationalite.pays_fr }}
+                                  </option>
+                                </select>
+                                </div>
+                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                  <label for="Lieu_de_naissance">Numero de passport</label>
+                                <input type="text" class="form-control"
+                                  required  />
+                                </div>
+                              </div>
+                              <!-- Date limite de validité du passeport && Pays de délivrance du passeport -->
+                              <div class="form-group row">
+                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                  <label for="Date_de_naissance">Date limite de validité du passeport</label>
+                                  <input type="date" class="form-control"
+                                required  />
+                                </div>
+                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                  <label for="Lieu_de_naissance">Pays de délivrance du passeport</label>
+                                <input type="text" class="form-control"
+                                  required  />
+                                </div>
+                              </div>
                 </form>
               </div>
             </ng-template>

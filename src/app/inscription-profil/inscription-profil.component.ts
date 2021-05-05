@@ -28,12 +28,7 @@ export class InscriptionProfilComponent implements OnInit {
     this.inscriptionProfil.getAllPays().subscribe((Response) => {
       this.nationalite = Response;
     });
-    this.inscriptionProfil.getAllTypeBachelier().subscribe((Response) => {
-      this.typeBachelier = Response;
-    });
-    this.inscriptionProfil.getAllInscriptionChoix().subscribe((Response) => {
-      this.InscriptionChoix = Response;
-    });
+   
   }
 
   onSubmit() {
