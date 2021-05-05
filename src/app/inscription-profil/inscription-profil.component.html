@@ -3,32 +3,21 @@
     <div class="card-body p-0">
       <div class="row">
         <!-- photo -->
-        <div class="col-lg-2">
+        <div class="col-lg-0">
           <div class="p-4">
             <div class="text-center">
               <h1 class="h4 text-gray-900 mb-4">Photo </h1>
             </div>
-
-
-
-
           </div>
         </div>
         <!--End photo -->
-        <div class="col-lg-10">
+        <div class="col-lg-12">
           <div class="p-4">
             <div class="text-center">
               <h1 class="h4 text-gray-900 mb-4">Informations Personnelles </h1>
             </div>
 
-            <div *ngIf="isSignedUp; else signupForm">
-              Your registration is successful. Please login!
-              <button [routerLink]="['/login']" class="btn btn-success">
-                Login
-              </button>
-            </div>
 
-            <ng-template #signupForm>
               <div class="user">
                 <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
                     <!-- Nom && Prenom -->
@@ -52,74 +41,73 @@
                       </div>
                     </div>
                   </div>
+<!-- Email && sexe -->
+<div class="form-group row">
+  <div class="col-sm-4 mb-3 mb-sm-0">
+    <label for="email">Email</label>
+  <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel"
+    required email />
 
-                      <!-- Email && sexe -->
-                  <div class="form-group row">
-                    <div class="col-sm-4 mb-3 mb-sm-0">
-                      <label for="email">Email</label>
-                    <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel"
-                      required email />
-
-                    </div>
-                    <div class="col-sm-4 mb-3 mb-sm-0">
-                      <label for="sexe">Sexe</label>
-                      <select class="form-control form-control-user" name="sexe"
+  </div>
+  <div class="col-sm-4 mb-3 mb-sm-0">
+    <label for="sexe">Sexe</label>
+    <select class="form-control form-control-user" name="sexe"
 
 
-                        required>
-                        <option  class="form-control form-control-user" [value]="Homme">Homme</option>
-                        <option  class="form-control form-control-user" [value]="Femme">Femme</option>
-                      </select>
-                    </div>
-                  </div>
-                            <!-- Date de naissance && lieu de naissance -->
+      required>
+      <option  class="form-control form-control-user" [value]="">Homme</option>
+      <option  class="form-control form-control-user" [value]="">Femme</option>
+    </select>
+  </div>
+</div>
+          <!-- Date de naissance && lieu de naissance -->
 
-                            <div class="form-group row">
-                              <div class="col-sm-4 mb-3 mb-sm-0">
-                                <label for="Date_de_naissance">Date de naissance</label>
-                              <input type="date" class="form-control"
-                                required  />
-                              </div>
-                              <div class="col-sm-4 mb-3 mb-sm-0">
-                                <label for="Lieu_de_naissance">Lieu de naissance</label>
-                              <input type="text" class="form-control"
-                                required  />
-                              </div>
-                            </div>
-                              <!-- Pays de naissance && Numero de passport -->
-                              <div class="form-group row">
-                                <div class="col-sm-4 mb-3 mb-sm-0">
-                                  <label for="Date_de_naissance">Pays de naissance</label>
-                                  <select class="form-control form-control-user" name="pays_nationalite"
-                                  [(ngModel)]="form.pays_nationalite" #pays_nationalite="ngModel" required>
-                                  <option  class="form-control form-control-user" [value]="pays_nationalite.id"
-                                    *ngFor="let pays_nationalite of nationalite">
-                                    {{ pays_nationalite.pays_fr }}
-                                  </option>
-                                </select>
-                                </div>
-                                <div class="col-sm-4 mb-3 mb-sm-0">
-                                  <label for="Lieu_de_naissance">Numero de passport</label>
-                                <input type="text" class="form-control"
-                                  required  />
-                                </div>
-                              </div>
-                              <!-- Date limite de validité du passeport && Pays de délivrance du passeport -->
-                              <div class="form-group row">
-                                <div class="col-sm-4 mb-3 mb-sm-0">
-                                  <label for="Date_de_naissance">Date limite de validité du passeport</label>
-                                  <input type="date" class="form-control"
-                                required  />
-                                </div>
-                                <div class="col-sm-4 mb-3 mb-sm-0">
-                                  <label for="Lieu_de_naissance">Pays de délivrance du passeport</label>
-                                <input type="text" class="form-control"
-                                  required  />
-                                </div>
-                              </div>
+          <div class="form-group row">
+            <div class="col-sm-4 mb-3 mb-sm-0">
+              <label for="Date_de_naissance">Date de naissance</label>
+            <input type="date" class="form-control"
+              required  />
+            </div>
+            <div class="col-sm-4 mb-3 mb-sm-0">
+              <label for="Lieu_de_naissance">Lieu de naissance</label>
+            <input type="text" class="form-control"
+              required  />
+            </div>
+          </div>
+            <!-- Pays de naissance && Numero de passport -->
+            <div class="form-group row">
+              <div class="col-sm-4 mb-3 mb-sm-0">
+                <label for="Date_de_naissance">Pays de naissance</label>
+                <select class="form-control form-control-user" name="pays_nationalite"
+                [(ngModel)]="form.pays_nationalite" #pays_nationalite="ngModel" required>
+                <option  class="form-control form-control-user" [value]="pays_nationalite.id"
+                  *ngFor="let pays_nationalite of nationalite">
+                  {{ pays_nationalite.pays_fr }}
+                </option>
+              </select>
+              </div>
+              <div class="col-sm-4 mb-3 mb-sm-0">
+                <label for="Lieu_de_naissance">Numero de passport</label>
+              <input type="text" class="form-control"
+                required  />
+              </div>
+            </div>
+            <!-- Date limite de validité du passeport && Pays de délivrance du passeport -->
+            <div class="form-group row">
+              <div class="col-sm-4 mb-3 mb-sm-0">
+                <label for="Date_de_naissance">Date limite de validité du passeport</label>
+                <input type="date" class="form-control"
+              required  />
+              </div>
+              <div class="col-sm-4 mb-3 mb-sm-0">
+                <label for="Lieu_de_naissance">Pays de délivrance du passeport</label>
+              <input type="text" class="form-control"
+                required  />
+              </div>
+            </div>
+
                 </form>
               </div>
-            </ng-template>
           </div>
         </div>
 

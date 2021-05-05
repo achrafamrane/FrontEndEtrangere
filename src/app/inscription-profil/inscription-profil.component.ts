@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { SignUpInfo } from '../auth/signup-info';
@@ -10,6 +11,7 @@ import { IscriptionProfil } from '../services/inscriptionProfil.service';
   styleUrls: ['./inscription-profil.component.css']
 })
 export class InscriptionProfilComponent implements OnInit {
+  id:number;
   showChoix: Boolean = false;
   form: any = {};
   signupInfo: SignUpInfo;
@@ -20,31 +22,22 @@ export class InscriptionProfilComponent implements OnInit {
   typeBachelier: Observable<string[]>;
   InscriptionChoix: Observable<string[]>;
   constructor(
+    private route:ActivatedRoute,
     private authService: AuthService,
     private inscriptionProfil: IscriptionProfil
   ) {}
 
-  ngOnInit() {
+  ngOnInit() : void {
     this.inscriptionProfil.getAllPays().subscribe((Response) => {
       this.nationalite = Response;
     });
-   
+    const id = this.route.snapshot.paramMap.get('id');
+    console.log('this.id: ', this.id);
+
   }
 
   onSubmit() {
-    if(this.form.types_inscription==null){
-      this.signupInfo = new SignUpInfo(
-        this.form.name,
-        this.form.prenom,
-        this.form.username,
-        this.form.email,
-        this.form.password,
-        this.form.ConfirmPassword,
-        this.form.pays_nationalite,
-        this.form.type_bachelier,
-        this.form.types_inscription="Bachelier"
-      );
-    }else{
+
       this.signupInfo = new SignUpInfo(
         this.form.name,
         this.form.prenom,
@@ -56,7 +49,7 @@ export class InscriptionProfilComponent implements OnInit {
         this.form.type_bachelier,
         this.form.types_inscription
       );
-    }
+
 
 
 
@@ -71,12 +64,5 @@ export class InscriptionProfilComponent implements OnInit {
       }
     );
   }
-  changeTypeBachelier(e) {
-    if (e.target.value == 3) {
-      this.showChoix = true;
-    } else {
 
-      this.showChoix = false;
-    }
-  }
 }

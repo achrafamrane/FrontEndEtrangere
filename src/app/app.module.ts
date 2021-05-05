@@ -12,20 +12,24 @@ import { LoginComponent } from './login/login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
 import { ConfirmEqualValidatorDirective } from './register/register/ConfirmEqualValidator.directive';
-import { InscriptionProfilComponent } from './inscription-profil/inscription-profil.component';
+import {  InscriptionGlobalComponent} from './inscription-global/inscription-global.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatStepperModule } from '@angular/material/stepper';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import{InscriptionProfilComponent} from './inscription-profil/inscription-profil.component'
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-    NavbarComponent,
-    LoginComponent,
+    NavbarComponent,InscriptionProfilComponent,
+    LoginComponent,InscriptionGlobalComponent,
     SidebarComponent,
-    HeaderComponent,ConfirmEqualValidatorDirective, InscriptionProfilComponent
+    HeaderComponent,ConfirmEqualValidatorDirective,
   ],
   imports: [
-    FormsModule,
+    FormsModule,MatSliderModule,MatStepperModule,
     HttpClientModule,
-    BrowserModule,
+    BrowserModule,BrowserAnimationsModule,
     AppRoutingModule
   ],
   providers: [{provide: APP_BASE_HREF, useValue: ''}],
