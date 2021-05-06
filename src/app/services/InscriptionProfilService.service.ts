@@ -25,7 +25,13 @@ export class InscriptionProfilService {
   getBachelierById(id):Observable<any>{
     return this.http.get<InscrptionProfil>(`${this.baseUrl}/informationProfil/${id}`);
   }
-
-
+  getPhoto(id:number):Observable<any>{
+    return this.http.get(`${this.baseUrl}/image/${id}`);
+  }
+  
+  uploadImages(id,fd)
+  {
+  return  this.http.put(`${this.baseUrl}/informationProfil/${id}`,fd);
+  }
 
 }

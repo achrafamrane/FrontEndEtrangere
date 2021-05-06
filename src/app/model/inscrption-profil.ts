@@ -9,7 +9,7 @@ export class InscrptionProfil {
   numeroPassport: number;
   datelimiteValidite: Date;
   paysdelivrencePassport: number;
-
+photo:any;
 
 
 
@@ -23,6 +23,7 @@ export class InscrptionProfil {
     numeroPassport: number,
     datelimiteValidite: Date,
     paysdelivrencePassport: number,
+    photo:any,
     ) {
       this.id=id;
       this.nom = nom;
@@ -34,5 +35,6 @@ export class InscrptionProfil {
       this.numeroPassport = numeroPassport;
       this.datelimiteValidite=datelimiteValidite;
       this.paysdelivrencePassport=paysdelivrencePassport;
+      this.photo=photo;
   }
 }
