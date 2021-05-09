@@ -21,7 +21,10 @@
     "@angular/platform-browser": "~11.2.11",
     "@angular/platform-browser-dynamic": "~11.2.11",
     "@angular/router": "~11.2.11",
+    "angular-material-fileupload": "^3.0.2",
     "bootstrap": "^4.6.0",
+    "ngx-order-pipe": "^2.1.1",
+    "orderby": "^1.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

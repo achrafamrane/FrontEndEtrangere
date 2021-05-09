@@ -31,6 +31,10 @@ export class InscriptionProfilService {
   
   uploadImages(id,fd)
   {
+  return  this.http.put(`${this.baseUrl}/informationProfilImage/${id}`,fd);
+  }
+  updateInformation(id,fd)
+  {
   return  this.http.put(`${this.baseUrl}/informationProfil/${id}`,fd);
   }
 

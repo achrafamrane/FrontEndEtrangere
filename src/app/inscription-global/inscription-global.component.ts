@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-inscription-global',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./inscription-global.component.css']
 })
 export class InscriptionGlobalComponent implements OnInit {
+  id: number;
 
-  constructor() { }
+  constructor( private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
   }
 
 }

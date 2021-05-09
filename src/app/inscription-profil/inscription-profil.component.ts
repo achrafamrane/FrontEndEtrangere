@@ -30,7 +30,7 @@ export class InscriptionProfilComponent implements OnInit {
     private route: ActivatedRoute,
     private authService: AuthService,
     private inscriptionProfilService: InscriptionProfilService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.inscriptionProfilService.getAllPays().subscribe((Response) => {
@@ -83,5 +83,16 @@ export class InscriptionProfilComponent implements OnInit {
       });
   }
 
-  onSubmit() {}
+  onSubmite() {
+
+
+    this.inscriptionProfilService.updateInformation(this.id, this.profil).subscribe(
+      (data) => {
+        console.log('data: ', data);
+
+      },
+
+    );
+
+  }
 }

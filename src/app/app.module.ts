@@ -16,7 +16,13 @@ import {  InscriptionGlobalComponent} from './inscription-global/inscription-glo
 import { MatSliderModule } from '@angular/material/slider';
 import { MatStepperModule } from '@angular/material/stepper';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import{InscriptionProfilComponent} from './inscription-profil/inscription-profil.component'
+import{InscriptionProfilComponent} from './inscription-profil/inscription-profil.component';
+import { MatFileUploadModule } from 'angular-material-fileupload';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { DocumentJustification2Component } from './document-justification2/document-justification2.component';
+import { OrderModule } from 'ngx-order-pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,9 +30,10 @@ import{InscriptionProfilComponent} from './inscription-profil/inscription-profil
     NavbarComponent,InscriptionProfilComponent,
     LoginComponent,InscriptionGlobalComponent,
     SidebarComponent,
-    HeaderComponent,ConfirmEqualValidatorDirective,
+    HeaderComponent,ConfirmEqualValidatorDirective, DocumentJustification2Component,
   ],
   imports: [
+    MatFileUploadModule,MatFormFieldModule,MatToolbarModule,OrderModule,
     FormsModule,MatSliderModule,MatStepperModule,
     HttpClientModule,
     BrowserModule,BrowserAnimationsModule,
