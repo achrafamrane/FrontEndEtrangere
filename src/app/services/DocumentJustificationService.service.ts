@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_URL } from '../app.constants';
+import { PieceDocument } from '../model/PieceDocument';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +13,14 @@ export class DocumentJustificationService {
 
 
   constructor(private http: HttpClient) { }
+
+
   getAllDocumentJustification():Observable<any>{
     return this.http.get(`${this.baseUrl}/allTypePiece`);
+  }
+  PostDocument(idBachelier,idTypePiece,fd):Observable<any>{
+    return this.http.post<PieceDocument>(`${this.baseUrl}/piece/${idBachelier}/${idTypePiece}`,fd);
+
   }
 
 }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DocumentJustificationModel } from '../model/documentJustification';
+import { PieceDocument } from '../model/PieceDocument';
 import { DocumentJustificationService } from '../services/DocumentJustificationService.service';
+import { PieceDocumentService } from '../services/piece-document.service';
 
 @Component({
   selector: 'app-document-justification2',
@@ -9,11 +11,16 @@ import { DocumentJustificationService } from '../services/DocumentJustificationS
   styleUrls: ['./document-justification2.component.css']
 })
 export class DocumentJustification2Component implements OnInit {
-Piece:DocumentJustificationModel;
-selectedFile: File = null;
-idBachelier: number;
+  mySubscription: any;
+  Piece: DocumentJustificationModel;
+  PieceDocuments: PieceDocument;
+  selectedFile: File = null;
+  idBachelier: number;
+  result:any;
+  constructor(private route: ActivatedRoute, private piecesDocumentService: PieceDocumentService
+    , private documentJustificationService: DocumentJustificationService) {
 
-  constructor(private route: ActivatedRoute,private documentJustificationService:DocumentJustificationService) { }
+    }
 
   ngOnInit(): void {
     this.idBachelier = this.route.snapshot.params['id'];
@@ -21,14 +28,36 @@ idBachelier: number;
     this.documentJustificationService.getAllDocumentJustification().subscribe((Response) => {
       this.Piece = Response;
     });
-  }
-  onFileSelected(event) {
-    this.selectedFile = <File>event.target.files[0];
-  }
-  onUploadImage() {
-    const fd = new FormData();
-    fd.append('image', this.selectedFile, this.selectedFile.name);
-    console.log('fd: ', this.idBachelier);
+
+    this.piecesDocumentService.getAllPieceJustification(this.idBachelier).subscribe((Response) => {
+      this.PieceDocuments = Response;
+    });
+this.mergeObjet();
 
   }
+  mergeObjet(){
+    setTimeout(() => {
+      const mergeById = (array1, array2) =>
+        array1.map(itm => ({
+          ...array2.find((item) => (item.idTypePiece === itm.id) && item),
+          ...itm
+        }));
+      this.result = mergeById(this.Piece, this.PieceDocuments);
+      console.log('result: ', this.result);
+    }, 1000);
+
+  }
+  onFileSelected(event, idTypePiece) {
+    this.selectedFile = <File>event.target.files[0];
+    const fd = new FormData();
+    fd.append('image', this.selectedFile, this.selectedFile.name);
+    this.documentJustificationService
+      .PostDocument(this.idBachelier, idTypePiece, fd)
+      .subscribe((response) => {
+        console.log('response: ', response);
+
+      });
+  }
+
+
 }

@@ -1,4 +1,9 @@
+import { PieceDocument } from "./PieceDocument";
+
 export class DocumentJustificationModel {
+  concat(PieceDocuments: PieceDocument) {
+    throw new Error('Method not implemented.');
+  }
   id:number;
   lib_type_latin: string;
   lib_type_arabe: string;
