@@ -35,7 +35,7 @@
                     <td>{{piece.estFourni}}</td>
 
                     <td>
-                      <input style="display: none" type="file" (change)="onFileSelected($event,piece.id)" #hiddenfileinput>
+                      <input style="display: none" type="file" accept="application/pdf" (change)="onFileSelected($event,piece.id)" #hiddenfileinput>
 
                       <button (click)="hiddenfileinput.click()" class="btn btn-info"><i
                           class="material-icons left">cloud</i>PDF</button>`

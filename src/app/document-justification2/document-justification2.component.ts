@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DocumentJustificationModel } from '../model/documentJustification';
 import { PieceDocument } from '../model/PieceDocument';
@@ -35,6 +35,7 @@ export class DocumentJustification2Component implements OnInit {
 this.mergeObjet();
 
   }
+
   mergeObjet(){
     setTimeout(() => {
       const mergeById = (array1, array2) =>
@@ -58,6 +59,5 @@ this.mergeObjet();
 
       });
   }
-
 
 }

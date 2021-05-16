@@ -22,6 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DocumentJustification2Component } from './document-justification2/document-justification2.component';
 import { OrderModule } from 'ngx-order-pipe';
+import { DiplomeAccesComponent } from './diplome-acces/diplome-acces.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { OrderModule } from 'ngx-order-pipe';
     NavbarComponent,InscriptionProfilComponent,
     LoginComponent,InscriptionGlobalComponent,
     SidebarComponent,
-    HeaderComponent,ConfirmEqualValidatorDirective, DocumentJustification2Component,
+    HeaderComponent,ConfirmEqualValidatorDirective, DocumentJustification2Component, DiplomeAccesComponent,
   ],
   imports: [
     MatFileUploadModule,MatFormFieldModule,MatToolbarModule,OrderModule,

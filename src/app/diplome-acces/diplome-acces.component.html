@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card-body p-0">
+      <div class="row">
+        <!-- photo -->
+
+        <!--End photo -->
+        <div class="col-lg-12">
+          <div class="p-4">
+            <div class="text-center">
+              <h1 class="h4 text-gray-900 mb-4">Informations Personnelles</h1>
+            </div>
+
+            <div class="user">
+              <form name="form" (ngSubmit)="f.form.valid && onSubmite()" #f="ngForm" novalidate>
+
+
+                <!-- Diplome && option diplome -->
+
+                <div class="form-group row">
+                  <div class="col-sm-4 mb-3 mb-sm-0">
+                    <label for="typeDiplome">Diplome</label>
+                    <input type="text" class="form-control form-control-user" name="typeDiplome"
+                      [(ngModel)]="diplome.typeDiplome" #typeDiplome="ngModel" required />
+                  </div>
+                  <div class="col-sm-4 mb-3 mb-sm-0">
+                    <label for="optionsDiplome">Option du diplome</label>
+                    <input type="text" class="form-control form-control-user" name="optionsDiplome"
+                      [(ngModel)]="diplome.optionsDiplome" #optionsDiplome="ngModel" required />
+                  </div>
+                </div>
+                <!-- Pays de naissance && Numero de passport -->
+                <div class="form-group row">
+                  <div class="col-sm-4 mb-3 mb-sm-0">
+                    <label for="moyenDiplome">Moyenne</label>
+                    <input type="text" class="form-control form-control-user" name="moyenDiplome"
+                      [(ngModel)]="diplome.moyenDiplome" #moyenDiplome="ngModel" required />
+                  </div>
+                  <div class="col-sm-4 mb-3 mb-sm-0">
+                    <label for="dateDelivranceDiplome">Date de Délivrance du Diplôme</label>
+                    <input type="date" class="form-control form-control-user" name="dateDelivranceDiplome"
+                      [(ngModel)]="diplome.dateDelivranceDiplome" #dateDelivranceDiplome="ngModel" required />
+                  </div>
+                </div>
+                <!--  Pays de délivrance du passeport -->
+                <div class="form-group row">
+
+                  <div class="col-sm-4 mb-3 mb-sm-0">
+                    <label for="paysDelivranceDiplome">Pays de délivrance du passeport</label>
+                    <input type="text" class="form-control form-control-user" name="paysDelivranceDiplome"
+                    [(ngModel)]="diplome.paysDelivranceDiplome" #paysDelivranceDiplome="ngModel" required />
+                  </div>
+                </div>
+                <button class="btn btn-primary">Inscription</button>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
