@@ -1,8 +1,6 @@
-
 export class DiplomeAccesModel {
-
   id:number;
-  idBachelier: Number;
+  idBachelier: number;
   typeDiplome: string;
   paysDelivranceDiplome: number;
   dateDelivranceDiplome: Date;

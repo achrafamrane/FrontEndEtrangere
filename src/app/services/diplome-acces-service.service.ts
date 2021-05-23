@@ -16,6 +16,14 @@ export class DiplomeAccesServiceService {
 
 
   PostDiplome(diplome):Observable<any>{
-    return this.http.post<DiplomeAccesModel>(`${this.baseUrl}/DiplomeAccesModel`,diplome);
+    return this.http.post(`${this.baseUrl}/DiplomeAccesModel`,diplome);
+  }
+
+  UpdateDiplome(id,diplome)
+  {
+  return  this.http.put(`${this.baseUrl}/DiplomeAccesModel/${id}`,diplome);
+  }
+  getByidBachleir(id):Observable<any>{
+    return this.http.get(`${this.baseUrl}/DiplomeAccesModel/${id}`);
   }
   }

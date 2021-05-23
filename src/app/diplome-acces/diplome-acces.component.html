@@ -22,6 +22,7 @@
                     <label for="typeDiplome">Diplome</label>
                     <input type="text" class="form-control form-control-user" name="typeDiplome"
                       [(ngModel)]="diplome.typeDiplome" #typeDiplome="ngModel" required />
+
                   </div>
                   <div class="col-sm-4 mb-3 mb-sm-0">
                     <label for="optionsDiplome">Option du diplome</label>
@@ -47,8 +48,14 @@
 
                   <div class="col-sm-4 mb-3 mb-sm-0">
                     <label for="paysDelivranceDiplome">Pays de délivrance du passeport</label>
-                    <input type="text" class="form-control form-control-user" name="paysDelivranceDiplome"
-                    [(ngModel)]="diplome.paysDelivranceDiplome" #paysDelivranceDiplome="ngModel" required />
+
+                    <select class="form-control form-control-user" name="paysDelivranceDiplome"
+                    [(ngModel)]="diplome.paysDelivranceDiplome" #paysDelivranceDiplome="ngModel" required>
+                    <option class="form-control form-control-user" [value]="paysNaissance.id"
+                      *ngFor="let paysNaissance of nationalite">
+                      {{ paysNaissance.pays_fr }}
+                    </option>
+                  </select>
                   </div>
                 </div>
                 <button class="btn btn-primary">Inscription</button>

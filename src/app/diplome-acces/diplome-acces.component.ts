@@ -16,31 +16,64 @@ export class DiplomeAccesComponent implements OnInit {
   idBachelier: number;
   showChoix: Boolean = false;
   form: any = {};
-  diplomee: DiplomeAccesModel;
-  diplome: any;
+  diplome: DiplomeAccesModel;
+  diplomes: any;
+  nationalite: Observable<string[]>;
 
   errorMessage = '';
   constructor(
     private route: ActivatedRoute,
     private diplomeAccesService:DiplomeAccesServiceService,
-    private inscriptionProfilService: InscriptionProfilService
+    private inscriptionProfilService:InscriptionProfilService,
   ) { }
 
   ngOnInit(): void {
-
     this.idBachelier = this.route.snapshot.params['id'];
-    this.diplome = new DiplomeAccesModel(0,this.idBachelier,"",0,new Date(),"",false,"");
+    this.diplome = new DiplomeAccesModel(1,this.idBachelier,'',0,new Date(),'',false,'');
+this.diplomeAccesService.getByidBachleir(this.idBachelier).subscribe((response)=>{
+  if(response===null){
 
+    this.diplome = new DiplomeAccesModel(1,this.idBachelier,'',0,new Date(),'',false,'');
 
+  }
+  else{
+    this.diplome=response;
+
+  }
+})
+this.inscriptionProfilService.getAllPays().subscribe((Response) => {
+  this.nationalite = Response;
+});
   }
 
 
   onSubmite() {
+if(this.idBachelier==this.diplome.idBachelier)
+{
 
-this.diplomeAccesService.PostDiplome(this.diplome).subscribe((data)=>{
-console.log('data: ', data);
+this.diplomeAccesService.UpdateDiplome(this.idBachelier,this.diplome).subscribe(()=>{
 
+console.log('update: ', );
+},
+
+(error)=>
+{
+this.errorMessage=error;
+console.log('error: ', error);
 })
+}else{
+  this.diplomeAccesService.PostDiplome(this.diplome).subscribe((data)=>{
+    console.log('datasss: ', data);
+
+    },
+
+    (error)=>
+    {
+this.errorMessage=error;
+console.log('error: ', error);
+    })
+}
+
 
 
 

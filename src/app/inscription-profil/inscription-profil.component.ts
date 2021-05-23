@@ -63,6 +63,7 @@ export class InscriptionProfilComponent implements OnInit {
             this.imageToShow = 'data:image/jpeg;base64,' + this.image_paths.res;
           });
       });
+
   }
   onFileSelected(event) {
     this.selectedFile = <File>event.target.files[0];

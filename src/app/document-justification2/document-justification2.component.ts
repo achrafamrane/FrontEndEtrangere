@@ -44,7 +44,6 @@ this.mergeObjet();
           ...itm
         }));
       this.result = mergeById(this.Piece, this.PieceDocuments);
-      console.log('result: ', this.result);
     }, 1000);
 
   }
