@@ -1,2 +1,5 @@
+<div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+<div class="container" *ngIf="info.token && !errorMessage">
 <p>home works!</p>
-<button class="btn btn-info" (click)="suivant()">suivant</button>
+<button class="btn btn-info" (click)="suivant()">Inscription Profile</button>
+</div>

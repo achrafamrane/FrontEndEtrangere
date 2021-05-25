@@ -1,4 +1,6 @@
-<div class="container">
+<div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+
+<div class="container" *ngIf="info.token && !errorMessage">
   <div class="card o-hidden border-0 shadow-lg my-5">
     <div class="card-body p-0">
       <div class="row">
@@ -7,9 +9,9 @@
           <div class="p-4">
             <div class="text-center">
               <h1 class="h4 text-gray-900 mb-4">Photo</h1>
-              <img [src]="imageToShow" class="rounded-circle" style="width: 150px; height: 150px" alt="Photo" />
-              <input type="file" (change)="onFileSelected($event)" />
-              <button type="button" (click)="onUploadImage()">upload</button>
+              <img *ngIf="show" [src]="imageToShow" class="rounded-circle" style="width: 150px; height: 150px" alt="Photo" />
+              <input style="display: none" type="file" (change)="onFileSelected($event)" accept="image/png, image/gif, image/jpeg" #hiddenfileinput/>
+              <button (click)="hiddenfileinput.click()" class="btn btn-info">photo</button>
 
             </div>
           </div>
@@ -56,13 +58,16 @@
                     <label for="sexe">Sexe</label>
                     <select class="form-control form-control-user" name="sexe" [(ngModel)]="profil.sexe" #sexe="ngModel"
                       required>
-                      <option class="form-control form-control-user">
+                      <option class="form-control form-control-user"  value="Homme">
                         Homme
                       </option>
-                      <option class="form-control form-control-user">
+                      <option class="form-control form-control-user"  value="Femme">
                         Femme
                       </option>
                     </select>
+                    <div *ngIf="f.submitted && sexe.invalid">
+                      <div *ngIf="sexe.errors.required">sexe is required</div>
+                    </div>
                   </div>
                 </div>
                 <!-- Date de naissance && lieu de naissance -->
@@ -70,14 +75,20 @@
                 <div class="form-group row">
                   <div class="col-sm-4 mb-3 mb-sm-0">
                     <label for="dateNaissance">Date de naissance</label>
-                    <input type="text" class="form-control form-control-user" name="dateNaissance"
+                    <input type="date" class="form-control form-control-user" name="dateNaissance"
                       [(ngModel)]="profil.dateNaissance" #dateNaissance="ngModel" required />
-                  </div>
+                      <div *ngIf="f.submitted && dateNaissance.invalid">
+                        <div *ngIf="dateNaissance.errors.required">date naissance is required</div>
+                      </div>
+                    </div>
                   <div class="col-sm-4 mb-3 mb-sm-0">
                     <label for="lieuNaissance">Lieu de naissance</label>
                     <input type="text" class="form-control form-control-user" name="lieuNaissance"
                       [(ngModel)]="profil.lieuNaissance" #lieuNaissance="ngModel" required />
-                  </div>
+                      <div *ngIf="f.submitted && lieuNaissance.invalid">
+                        <div *ngIf="lieuNaissance.errors.required">lieu naissance is required</div>
+                      </div>
+                    </div>
                 </div>
                 <!-- Pays de naissance && Numero de passport -->
                 <div class="form-group row">
@@ -90,20 +101,29 @@
                         {{ paysNaissance.pays_fr }}
                       </option>
                     </select>
+                    <div *ngIf="f.submitted && paysNaissance.invalid">
+                      <div *ngIf="paysNaissance.errors.required">pays Naissance is required</div>
+                    </div>
                   </div>
                   <div class="col-sm-4 mb-3 mb-sm-0">
                     <label for="numeroPassport">Numero de passport</label>
                     <input type="text" class="form-control form-control-user" name="numeroPassport"
                       [(ngModel)]="profil.numeroPassport" #numeroPassport="ngModel" required />
-                  </div>
+                      <div *ngIf="f.submitted && numeroPassport.invalid">
+                        <div *ngIf="numeroPassport.errors.required">numero passport is required</div>
+                      </div>
+                    </div>
                 </div>
                 <!-- Date limite de validité du passeport && Pays de délivrance du passeport -->
                 <div class="form-group row">
                   <div class="col-sm-4 mb-3 mb-sm-0">
                     <label for="datelimiteValidite">Date limite de validité du passeport</label>
-                    <input type="text" class="form-control form-control-user" name="datelimiteValidite"
+                    <input type="date" class="form-control form-control-user" name="datelimiteValidite"
                       [(ngModel)]="profil.datelimiteValidite" #datelimiteValidite="ngModel" required />
-                  </div>
+                      <div *ngIf="f.submitted && datelimiteValidite.invalid">
+                        <div *ngIf="datelimiteValidite.errors.required">date limite Validite is required</div>
+                      </div>
+                    </div>
                   <div class="col-sm-4 mb-3 mb-sm-0">
                     <label for="paysdelivrencePassport">Pays de délivrance du passeport</label>
                     <select class="form-control form-control-user" name="paysdelivrencePassport"
@@ -113,6 +133,9 @@
                       {{ paysdelivrencePassport.pays_fr }}
                     </option>
                   </select>
+                  <div *ngIf="f.submitted && paysdelivrencePassport.invalid">
+                    <div *ngIf="paysdelivrencePassport.errors.required">pays delivrence Passport is required</div>
+                  </div>
                   </div>
                 </div>
                 <button class="btn btn-primary">Inscription</button>

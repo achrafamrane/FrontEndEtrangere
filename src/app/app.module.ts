@@ -24,6 +24,7 @@ import { DocumentJustification2Component } from './document-justification2/docum
 import { OrderModule } from 'ngx-order-pipe';
 import { DiplomeAccesComponent } from './diplome-acces/diplome-acces.component';
 import { HomeComponent } from './home/home.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { HomeComponent } from './home/home.component';
     NavbarComponent,InscriptionProfilComponent,
     LoginComponent,InscriptionGlobalComponent,
     SidebarComponent,
-    HeaderComponent,ConfirmEqualValidatorDirective, DocumentJustification2Component, DiplomeAccesComponent, HomeComponent,
+    HeaderComponent,ConfirmEqualValidatorDirective, DocumentJustification2Component, DiplomeAccesComponent, HomeComponent, ErrorPageComponent,
   ],
   imports: [
     MatFileUploadModule,MatFormFieldModule,MatToolbarModule,OrderModule,

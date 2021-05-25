@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DiplomeAccesComponent } from './diplome-acces/diplome-acces.component';
 import { DocumentJustification2Component } from './document-justification2/document-justification2.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 import { HomeComponent } from './home/home.component';
 import { InscriptionGlobalComponent } from './inscription-global/inscription-global.component';
 import { InscriptionProfilComponent } from './inscription-profil/inscription-profil.component';
@@ -42,7 +43,9 @@ const routes: Routes = [
   path: 'navbar',
   component: NavbarComponent
 },
-{ path: 'login', component: LoginComponent }
+{ path: 'login', component: LoginComponent },
+{ path: 'errorPage', component: ErrorPageComponent }
+
 ];
 
 @NgModule({
