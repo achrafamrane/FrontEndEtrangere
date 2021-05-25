@@ -28,7 +28,7 @@ const routes: Routes = [
   component: InscriptionProfilComponent
 },
 {
-  path: 'justification2',
+  path: 'justification2/:id',
   component: DocumentJustification2Component
 },
 {

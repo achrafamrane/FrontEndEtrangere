@@ -5,6 +5,7 @@ import { AuthService } from '../auth/auth.service';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { InscrptionProfil } from '../model/inscrption-profil';
 import { InscriptionProfilService } from '../services/InscriptionProfilService.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-inscription-profil',
@@ -24,9 +25,9 @@ export class InscriptionProfilComponent implements OnInit {
   signupInfo: InscrptionProfil;
   isSignedUp = false;
   isSignUpFailed = false;
-  errorMessage: boolean=false;
-  decode:string;
-  show:boolean=false;
+  errorMessage = '';
+  decode: string;
+  show: boolean = false;
 
   nationalite: Observable<string[]>;
   typeBachelier: Observable<string[]>;
@@ -34,7 +35,8 @@ export class InscriptionProfilComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private inscriptionProfilService: InscriptionProfilService,
-    private token: TokenStorageService
+    private token: TokenStorageService,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -47,13 +49,11 @@ export class InscriptionProfilComponent implements OnInit {
         this.nationalite = Response;
       },
       (error) => {
-        this.errorMessage = error.error.message;
-
-
+        this.errorMessage = 'Error 404';
       }
     );
     this.decode = this.route.snapshot.params['id'];
-    this.id =Number( window.atob(this.decode));
+    this.id = Number(window.atob(this.decode));
 
     this.profil = new InscrptionProfil(
       this.id,
@@ -73,19 +73,22 @@ export class InscriptionProfilComponent implements OnInit {
       .getBachelierById(this.id)
       .subscribe((response) => {
         this.profil = response;
+        if(this.profil.photo===''){}else{
+
         this.inscriptionProfilService.getPhoto(this.profil.photo).subscribe(
           (data1) => {
-            this.show=true;
-            this.image_paths = data1;
-            this.imageToShow = 'data:image/jpeg;base64,' + this.image_paths.res;
+
+              this.show = true;
+              this.image_paths = data1;
+              this.imageToShow =
+                'data:image/jpeg;base64,' + this.image_paths.res;
           },
-          (error)=>{
-            this.show=false;
-            this.errorMessage = error.error.message;
+          (error) => {
 
-
+            this.show = false;
           }
         );
+      }
       });
   }
   onFileSelected(event) {
@@ -102,15 +105,15 @@ export class InscriptionProfilComponent implements OnInit {
         this.profile = response;
         this.inscriptionProfilService.getPhoto(this.profile.photo).subscribe(
           (data1) => {
-            this.show=true;
+            this.Success();
+            this.show = true;
             this.image_paths = data1;
             this.imageToShow = 'data:image/jpeg;base64,' + this.image_paths.res;
           },
           (error) => {
-            this.show=false;
-            this.errorMessage = error.error.message;
-
-
+            this.Error();
+            this.show = false;
+            this.errorMessage = 'Error 404';
           }
         );
       });
@@ -120,12 +123,29 @@ export class InscriptionProfilComponent implements OnInit {
     this.inscriptionProfilService
       .updateInformation(this.id, this.profil)
       .subscribe(
-        (data) => {},
+        (data) => {
+          this.Success();
+        },
         (error) => {
-          this.errorMessage = error.error.message;
-
-
+          this.Error();
+          this.errorMessage = 'Error 404';
         }
       );
+  }
+  Error() {
+    this._snackBar.open('Error ', '', {
+      duration: 3000,
+      verticalPosition: 'top',
+      horizontalPosition: 'right',
+      panelClass: 'error',
+    });
+  }
+  Success() {
+    this._snackBar.open('Success', '', {
+      duration: 3000,
+      verticalPosition: 'top',
+      horizontalPosition: 'right',
+      panelClass: 'success',
+    });
   }
 }

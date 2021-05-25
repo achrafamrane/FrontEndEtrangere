@@ -2,17 +2,17 @@
 
 <mat-horizontal-stepper >
   <mat-step label="step 1">
-    <button class="btn btn-success" matStepperNext (click)="suivant()">Suivant</button>
+    <button class="btn btn-success" matStepperNext (click)="suivantStep1()">Suivant</button>
 
     <app-inscription-profil></app-inscription-profil>
   </mat-step>
-  <mat-step *ngIf="showStep" label="step 2">
-    <button class="btn btn-success" matStepperNext>Suivant</button>
+  <mat-step *ngIf="showStep2" label="step 2">
+    <button class="btn btn-success" matStepperNext (click)="suivantStep2()">Suivant</button>
 <button class="btn btn-info" matStepperPrevious>Retour</button>
     <app-document-justification2></app-document-justification2>
 
   </mat-step>
-  <mat-step *ngIf="showStep" label="step 3">
+  <mat-step *ngIf="showStep3" label="step 3">
     <button class="btn btn-success" matStepperNext>Suivant</button>
     <button class="btn btn-info" matStepperPrevious>Retour</button>
     <app-diplome-acces></app-diplome-acces>

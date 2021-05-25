@@ -25,6 +25,7 @@ import { OrderModule } from 'ngx-order-pipe';
 import { DiplomeAccesComponent } from './diplome-acces/diplome-acces.component';
 import { HomeComponent } from './home/home.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     FormsModule,MatSliderModule,MatStepperModule,
     HttpClientModule,
     BrowserModule,BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,MatSnackBarModule
   ],
   providers: [{provide: APP_BASE_HREF, useValue: ''}],
   bootstrap: [AppComponent]

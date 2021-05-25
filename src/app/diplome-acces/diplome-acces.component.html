@@ -1,4 +1,6 @@
-<div class="container">
+<div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+
+<div class="container"*ngIf="info.token && !errorMessage">
   <div class="card o-hidden border-0 shadow-lg my-5">
     <div class="card-body p-0">
       <div class="row">
@@ -8,7 +10,7 @@
         <div class="col-lg-12">
           <div class="p-4">
             <div class="text-center">
-              <h1 class="h4 text-gray-900 mb-4">Informations Personnelles</h1>
+              <h1 class="h4 text-gray-900 mb-4">Mon Diplome</h1>
             </div>
 
             <div class="user">
@@ -22,13 +24,22 @@
                     <label for="typeDiplome">Diplome</label>
                     <input type="text" class="form-control form-control-user" name="typeDiplome"
                       [(ngModel)]="diplome.typeDiplome" #typeDiplome="ngModel" required />
-
+                      <div *ngIf="f.submitted && typeDiplome.invalid">
+                        <div *ngIf="typeDiplome.errors.required">
+                          typeDiplome is required
+                        </div>
+                      </div>
                   </div>
                   <div class="col-sm-4 mb-3 mb-sm-0">
                     <label for="optionsDiplome">Option du diplome</label>
                     <input type="text" class="form-control form-control-user" name="optionsDiplome"
                       [(ngModel)]="diplome.optionsDiplome" #optionsDiplome="ngModel" required />
-                  </div>
+                      <div *ngIf="f.submitted && typeDiplome.invalid">
+                        <div *ngIf="typeDiplome.errors.required">
+                          type Diplome is required
+                        </div>
+                      </div>
+                    </div>
                 </div>
                 <!-- Pays de naissance && Numero de passport -->
                 <div class="form-group row">
@@ -36,12 +47,22 @@
                     <label for="moyenDiplome">Moyenne</label>
                     <input type="text" class="form-control form-control-user" name="moyenDiplome"
                       [(ngModel)]="diplome.moyenDiplome" #moyenDiplome="ngModel" required />
-                  </div>
+                      <div *ngIf="f.submitted && moyenDiplome.invalid">
+                        <div *ngIf="moyenDiplome.errors.required">
+                          moyen Diplome is required
+                        </div>
+                      </div>
+                    </div>
                   <div class="col-sm-4 mb-3 mb-sm-0">
                     <label for="dateDelivranceDiplome">Date de Délivrance du Diplôme</label>
                     <input type="date" class="form-control form-control-user" name="dateDelivranceDiplome"
                       [(ngModel)]="diplome.dateDelivranceDiplome" #dateDelivranceDiplome="ngModel" required />
-                  </div>
+                      <div *ngIf="f.submitted && dateDelivranceDiplome.invalid">
+                        <div *ngIf="dateDelivranceDiplome.errors.required">
+                          date Delivrance Diplome is required
+                        </div>
+                      </div>
+                    </div>
                 </div>
                 <!--  Pays de délivrance du passeport -->
                 <div class="form-group row">
@@ -56,7 +77,12 @@
                       {{ paysNaissance.pays_fr }}
                     </option>
                   </select>
+                  <div *ngIf="f.submitted && paysDelivranceDiplome.invalid">
+                    <div *ngIf="paysDelivranceDiplome.errors.required">
+                      pays Delivrance Diplome is required
+                    </div>
                   </div>
+                </div>
                 </div>
                 <button class="btn btn-primary">Inscription</button>
 

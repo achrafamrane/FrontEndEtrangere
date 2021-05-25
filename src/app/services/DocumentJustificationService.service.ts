@@ -22,5 +22,8 @@ export class DocumentJustificationService {
     return this.http.post<PieceDocument>(`${this.baseUrl}/piece/${idBachelier}/${idTypePiece}`,fd);
 
   }
+  getDocumentByIdBachelier(idBachelier):Observable<any>{
+    return this.http.get(`${this.baseUrl}/allPiece/${idBachelier}`);
+  }
 
 }

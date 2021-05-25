@@ -8,14 +8,18 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class InscriptionGlobalComponent implements OnInit {
   id: number;
-showStep:Boolean=false;
+  showStep2:Boolean=false;
+  showStep3:Boolean=false;
   constructor( private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
   }
-  suivant(){
-    this.showStep=true;
+  suivantStep1(){
+    this.showStep2=true;
+  }
+  suivantStep2(){
+    this.showStep3=true;
   }
 
 }
