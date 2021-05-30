@@ -36,7 +36,7 @@
                         <div *ngIf="type_bachelier.errors.required">Type is required</div>
                       </div>
                     </div>
-                    <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div class="col-sm-6 mb-3 mb-sm-0" *ngIf="showChoix">
                       <label for="Nationalité">Nationalité</label>
                       <select class="form-control form-control-user" name="pays_nationalite"
                         [(ngModel)]="form.pays_nationalite" #pays_nationalite="ngModel" required>

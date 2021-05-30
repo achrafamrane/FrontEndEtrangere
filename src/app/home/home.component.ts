@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     //Authentification
     this.info = {
       token: this.token.getToken(),
@@ -34,7 +35,7 @@ export class HomeComponent implements OnInit {
         this.errorMessage = 'Error 404';
         setTimeout(() => {
           this.refreshPage();
-        }, 5000);
+        }, 1000);
       }
     );
   }

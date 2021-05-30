@@ -20,7 +20,9 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.token.signOut();
    /*  this.router.navigate(['main'], { skipLocationChange: true }); */
+
     window.location.reload();
+
   }
   login() {
     this.router.navigate(['login']);

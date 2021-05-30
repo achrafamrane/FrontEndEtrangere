@@ -36,7 +36,8 @@ export class InscriptionProfilComponent implements OnInit {
     private route: ActivatedRoute,
     private inscriptionProfilService: InscriptionProfilService,
     private token: TokenStorageService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +45,9 @@ export class InscriptionProfilComponent implements OnInit {
       token: this.token.getToken(),
       username: this.token.getUsername(),
     };
+    if (this.info.username === null) {
+      this.router.navigate(['login']);
+    }
     this.inscriptionProfilService.getAllPays().subscribe(
       (Response) => {
         this.nationalite = Response;
@@ -73,22 +77,20 @@ export class InscriptionProfilComponent implements OnInit {
       .getBachelierById(this.id)
       .subscribe((response) => {
         this.profil = response;
-        if(this.profil.photo===''){}else{
-
-        this.inscriptionProfilService.getPhoto(this.profil.photo).subscribe(
-          (data1) => {
-
+        if (this.profil.photo === '') {
+        } else {
+          this.inscriptionProfilService.getPhoto(this.profil.photo).subscribe(
+            (data1) => {
               this.show = true;
               this.image_paths = data1;
               this.imageToShow =
                 'data:image/jpeg;base64,' + this.image_paths.res;
-          },
-          (error) => {
-
-            this.show = false;
-          }
-        );
-      }
+            },
+            (error) => {
+              this.show = false;
+            }
+          );
+        }
       });
   }
   onFileSelected(event) {

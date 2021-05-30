@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { DocumentJustificationModel } from '../model/documentJustification';
 import { PieceDocument } from '../model/PieceDocument';
@@ -22,7 +23,9 @@ export class DocumentJustification2Component implements OnInit {
   info: any;
   errorMessage = '';
   decode: any;
-
+  res:boolean=false;
+  res2:boolean=false;
+  valId:any;
   constructor(
     private route: ActivatedRoute,
     private piecesDocumentService: PieceDocumentService,
@@ -53,11 +56,14 @@ export class DocumentJustification2Component implements OnInit {
       .subscribe(
         (Response) => {
           this.PieceDocuments = Response;
+          console.log(' this.PieceDocuments: ',  this.PieceDocuments);
+
         },
         (error) => {
           this.errorMessage = 'Error 404';
         }
       );
+
     this.mergeObjet();
   }
 
@@ -69,24 +75,109 @@ export class DocumentJustification2Component implements OnInit {
           ...itm,
         }));
       this.result = mergeById(this.Piece, this.PieceDocuments);
+      console.log('this.result: ', this.result);
     }, 1000);
   }
+
   onFileSelected(event, idTypePiece) {
+
+
+    //selected file
     this.selectedFile = <File>event.target.files[0];
     const fd = new FormData();
     fd.append('image', this.selectedFile, this.selectedFile.name);
-    
+    //getAllDocumentJustification
+
+    // map resIdTypePiece and resIdBAchelier
+    const resIdTypePiece = this.result.map((o) => o.idTypePiece);
+    const resIdBAchelier = this.result.map((o) => o.idBachelier);
     this.documentJustificationService
-      .PostDocument(this.idBachelier, idTypePiece, fd)
-      .subscribe(
-        (response) => {
-          this.Success();
-        },
-        (error) => {
-          this.errorMessage = 'Error 404';
-          this.Error();
-        }
-      );
+    .PostDocument(this.idBachelier, idTypePiece, fd)
+    .subscribe(
+      (response) => {
+        this.Success();
+        this.documentJustificationService.getAllDocumentJustification().subscribe(
+          (Response) => {
+            this.Piece = Response;
+          },
+          (error) => {
+            this.errorMessage = 'Error 404';
+          }
+        );
+
+        this.piecesDocumentService
+          .getAllPieceJustification(this.idBachelier)
+          .subscribe(
+            (Response) => {
+              this.PieceDocuments = Response;
+              console.log(' this.PieceDocuments: ',  this.PieceDocuments);
+
+            },
+            (error) => {
+              this.errorMessage = 'Error 404';
+            }
+          );
+
+        this.mergeObjet();
+      },
+      (error) => {
+        this.errorMessage = 'Error 404';
+        this.Error();
+      }
+    );
+
+
+
+
+
+
+    /**
+       if(resIdTypePiece[i]==null && resIdBAchelier[j]==null  ){
+
+        this.documentJustificationService
+          .PostDocument(this.idBachelier, idTypePiece, fd)
+          .subscribe(
+            (response) => {
+              this.Success();
+
+            },
+            (error) => {
+              this.errorMessage = 'Error 404';
+              this.Error();
+            }
+          );
+        break;
+        }*/
+
+    //updat
+    /**
+this.documentJustificationService
+.PutDocument(this.idBachelier, idTypePiece, fd)
+.subscribe(
+  (response) => {
+    this.Success();
+  },
+  (error) => {
+    this.errorMessage = 'Error 404';
+    this.Error();
+  }
+);*/
+    //insert
+    /**
+          else  {
+            this.documentJustificationService
+              .PostDocument(this.idBachelier, idTypePiece, fd)
+              .subscribe(
+                (response) => {
+                  this.Success();
+                },
+                (error) => {
+                  this.errorMessage = 'Error 404';
+                  this.Error();
+                }
+              );
+            break;
+          }*/
   }
   Error() {
     this._snackBar.open('Error ', '', {

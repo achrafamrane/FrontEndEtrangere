@@ -25,5 +25,9 @@ export class DocumentJustificationService {
   getDocumentByIdBachelier(idBachelier):Observable<any>{
     return this.http.get(`${this.baseUrl}/allPiece/${idBachelier}`);
   }
+  PutDocument(idBachelier,idTypePiece,fd):Observable<any>{
+    return this.http.put<PieceDocument>(`${this.baseUrl}/piece/${idBachelier}/${idTypePiece}`,fd);
+
+  }
 
 }
